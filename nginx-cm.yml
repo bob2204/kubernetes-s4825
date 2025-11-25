@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  LEVEL: Initiation
+  SESSION: Kubernetes
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: nginx

@@ -31,5 +31,10 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
+          - name: FORMATION
+            valueFrom:
+              configMapKeyRef:
+                name: nginx
+                key: SESSION
       - image: php:8.2-fpm
         name: php
