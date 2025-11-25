@@ -23,5 +23,13 @@ spec:
             value: K8S
           - name: JOURS
             value: "5"
+          - name: PODIP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          - name: NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
       - image: php:8.2-fpm
         name: php
