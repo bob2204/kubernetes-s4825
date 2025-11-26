@@ -5,10 +5,14 @@ metadata:
     app: hello
   name: hello
 spec:
-  replicas: 3
+  replicas: 10
   selector:
     matchLabels:
       app: hello
+  strategy:
+    rollingUpdate:
+      maxSurge: 10%
+      maxUnavailable: 0
   template:
     metadata:
       labels:
@@ -18,6 +22,8 @@ spec:
       - image: bob2606/hello-http:0.8.34
         name: hello-http
         env:
+          - name: TEST
+            value: ok
           - name: NODENAME
             valueFrom:
               fieldRef:
