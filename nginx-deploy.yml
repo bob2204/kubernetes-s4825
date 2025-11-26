@@ -5,7 +5,7 @@ metadata:
     app: nginx
   name: nginx
 spec:
-  replicas: 4
+  replicas: 2
   selector:
     matchLabels:
       app: nginx
@@ -36,5 +36,11 @@ spec:
               configMapKeyRef:
                 name: nginx
                 key: SESSION
+        readinessProbe:
+          httpGet:
+            path: /index.html
+            port: 80
+          periodSeconds: 3
+          failureThreshold: 3
       - image: php:8.2-fpm
         name: php
