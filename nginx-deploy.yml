@@ -9,7 +9,9 @@ metadata:
 spec:
   replicas: 10
   strategy:
-    type: Recreate
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 0
   selector:
     matchLabels:
       app: nginx
@@ -27,7 +29,7 @@ spec:
           - name: STAGE
             value: Kubernetes
           - name: JOUR
-            value: "4"
+            value: "5"
           - name: PODIP
             valueFrom:
               fieldRef:
