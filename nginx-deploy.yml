@@ -59,11 +59,20 @@ spec:
           - name: data
             mountPath: /usr/share/nginx/html
             subPath: html
+          - name: nginx-conf
+            mountPath: /etc/nginx/conf.d/
       - image: php:8.2-fpm
         name: php
+        volumeMounts:
+          - name: data
+            mountPath: /var/www/html
+            subPath: html
 
       volumes:
         - name: data
           nfs:
             server: 192.168.56.200
             path: / 
+        - name: nginx-conf
+          configMap:
+            name: nginx-conf
