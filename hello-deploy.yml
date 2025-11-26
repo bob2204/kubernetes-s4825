@@ -5,7 +5,7 @@ metadata:
     app: hello
   name: hello
 spec:
-  replicas: 10
+  replicas: 2
   selector:
     matchLabels:
       app: hello
@@ -43,3 +43,13 @@ spec:
             port: 80
           periodSeconds: 10
           failureThreshold: 3
+        volumeMounts:
+          - name: status
+            mountPath: /var/lib/hello-http/status
+
+      volumes:
+        - name: status
+          hostPath:
+            path: /home/stagiaire/data/status
+            type: File
+
