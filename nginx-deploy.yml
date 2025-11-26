@@ -42,5 +42,11 @@ spec:
             port: 80
           periodSeconds: 3
           failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /index.html
+            port: 80
+          periodSeconds: 5
+          failureThreshold: 3
       - image: php:8.2-fpm
         name: php
