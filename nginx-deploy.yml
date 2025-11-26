@@ -1,11 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    kubernetes.io/change-cause: Test
   labels:
     app: nginx
   name: nginx
 spec:
-  replicas: 2
+  replicas: 10
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: nginx
@@ -14,15 +18,16 @@ spec:
       labels:
         app: nginx
         env: dev
+        level: premium 
     spec:
       containers:
       - image: nginx:1.28
         name: nginx
         env:
           - name: STAGE
-            value: K8S
-          - name: JOURS
-            value: "5"
+            value: Kubernetes
+          - name: JOUR
+            value: "4"
           - name: PODIP
             valueFrom:
               fieldRef:
