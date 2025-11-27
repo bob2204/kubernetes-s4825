@@ -25,3 +25,6 @@ spec:
               do
                 :
               done
+          resources:
+            limits:
+              cpu: "250m"
