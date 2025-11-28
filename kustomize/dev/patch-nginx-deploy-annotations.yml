@@ -1,0 +1,3 @@
+- op: add
+  path: /metadata/annotations/stage.local~1env
+  value: dev

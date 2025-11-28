@@ -23,3 +23,13 @@ labels:
   - pairs:
       env: dev
     includeSelectors: true
+
+patches:
+  - path: patch-nginx-deploy-replicas.yml
+    target:
+      kind: Deployment
+      name: nginx
+  - path: patch-nginx-deploy-annotations.yml
+    target:
+      kind: Deployment
+      name: nginx
