@@ -3,5 +3,7 @@ kind: Kustomization
 
 resources:
   - ../base
+  - dev-ns.yml
 
+namespace: dev
 namePrefix: dev-
