@@ -12,3 +12,9 @@ configMapGenerator:
   - name: nginx
     envs:
       - nginx.env
+
+images:
+  - name: nginx
+    newTag: "1.29"
+  - name: php
+    newTag: "8.4-fpm"
