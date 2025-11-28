@@ -1,5 +1,6 @@
 ## Mise en place du référentiel
 
+```
 .
 ├── base
 │   ├── kustomization.yml
@@ -11,8 +12,9 @@
 ├── dev
 ├── preprod
 └── prod
+```
 
-Vérification par
+**Vérification par**
 ```
 kubectl kustomize base
 ```
