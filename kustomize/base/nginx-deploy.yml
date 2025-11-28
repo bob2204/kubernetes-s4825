@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubernetes.io/change-cause: Test
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+        env: dev
+        level: premium
+    spec:
+      containers:
+      - image: nginx:1.28
+        name: nginx
+        env:
+          - name: STAGE
+            value: Kubernetes
+          - name: JOUR
+            value: "6"
+          - name: PODIP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          - name: NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: FORMATION
+            valueFrom:
+              configMapKeyRef:
+                name: nginx
+                key: SESSION
+        readinessProbe:
+          httpGet:
+            path: /index.html
+            port: 80
+          periodSeconds: 3
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /index.html
+            port: 80
+          periodSeconds: 5
+          failureThreshold: 3
+        volumeMounts:
+          - name: data
+            mountPath: /usr/share/nginx/html
+            subPath: html
+          - name: nginx-conf
+            mountPath: /etc/nginx/conf.d/
+        resources:
+          limits:
+            cpu: "30m"
+      - image: php:8.2-fpm
+        name: php
+        volumeMounts:
+          - name: data
+            mountPath: /var/www/html
+            subPath: html
+        resources:
+          limits:
+            cpu: "30m"
+
+      volumes:
+        - name: data
+          nfs:
+            server: 192.168.56.200
+            path: / 
+        - name: nginx-conf
+          configMap:
+            name: nginx-conf

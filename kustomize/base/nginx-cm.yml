@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  LEVEL: Initiation
+  SESSION: K8S
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: nginx
+  namespace: stage
