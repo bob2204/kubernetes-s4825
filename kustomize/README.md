@@ -18,3 +18,15 @@
 ```
 kubectl kustomize base
 ```
+
+## Mise en place de l'environnement Dev
+
+**Vérification par**
+```
+kubectl kustomize base
+```
+
+**Différenciation des ressources:**
+
+* Préfixe/Suffixe de leur nom
+* Isolation dans un namespace
