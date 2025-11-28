@@ -1,0 +1,6 @@
+apiVersion: v2
+name: hello
+description: Présentation de la notion de Chart Helm
+type: application
+version: 0.0.1
+appVersion: "v0.8.34"
