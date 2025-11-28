@@ -1,0 +1,9 @@
+deployment:
+  replicas: 1
+
+hello:
+  limits:
+    cpu: "20m"
+
+image:
+  tag: 0.8.34
