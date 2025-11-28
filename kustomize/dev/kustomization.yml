@@ -18,3 +18,7 @@ images:
     newTag: "1.29"
   - name: php
     newTag: "8.4-fpm"
+
+labels:
+  - pairs:
+      env: dev
